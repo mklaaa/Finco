@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from configparser import ConfigParser
 
-def config(filename='database.ini', section='postgresql'):
+def config(filename='credentials.ini', section='postgresql'):
     #create parser
     parser=ConfigParser()
     #read config
@@ -18,3 +18,6 @@ def config(filename='database.ini', section='postgresql'):
         raise Exception('Section {0} not found in the {1} file'.format(section,filename))
 
     return db
+
+if __name__=='__main__':
+    config()

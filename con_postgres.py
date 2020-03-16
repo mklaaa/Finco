@@ -1,34 +1,39 @@
 import psycopg2 as sql
 from config import config
-import pandas as pd
 
-def connect():
+def connection(status):
     """ Connect to PostgreSQL database server """
     conn = None
-    try:
-        #read connection parameters
-        params=config()
 
-        #connect to the postgreSQL
-        print('Connecting to the PostgreSQL database...')
-        conn = sql.connect(**params)
+    #to open the connection
+    if status == 'open':
+        try:
+            #read connection parameters
+            params=config()
 
-        #create a cursor
-        cur = conn.cursor()
+            #connect to the postgreSQL
+            print('Connecting to the PostgreSQL database...')
+            password=input('Password: ')
+            conn = sql.connect(**params,password=password)
+            
+            #create a cursor
+            cur = conn.cursor()
+            return cur
 
-    #execute a statement
-        cur.execute('SELECT VERSION();')
-        rec=cur.fetchone()
-        print('PostgreSQL database version:',rec)
+        except (Exception, sql.DatabaseError) as error:
+            print(error)
 
-        #close the communication with the PostgreSQL
-        cur.close()
-    except (Exception, sql.DatabaseError) as error:
-        print(error)
-    finally:
+    # to close the connection
+    elif status == 'close':
         if conn is not None:
+            cur.close()
             conn.close()
             print('Database connection closed.')
+    else:
+        print('Not an expected comand')
 
 if __name__=='__main__':
-    connect()
+    cur = connection('open')
+    rec=cur.execute('SELECT VERSION ();')
+    rec.fetchone()
+#    cur.close()
