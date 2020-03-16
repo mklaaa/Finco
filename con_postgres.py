@@ -1,6 +1,6 @@
 import psycopg2 as sql
 from config import config
-import numpy as np
+import pandas as pd
 
 def connect():
     """ Connect to PostgreSQL database server """
