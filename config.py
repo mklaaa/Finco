@@ -1,9 +1,11 @@
-#!/usr/bin/python
 from configparser import ConfigParser
+from pathlib import Path
 
-def config(filename='credentials.ini', section='postgresql'):
+# find a better way to look for credentials
+def config(filename=Path("C:/Users/Vicente Bispo/Documents/Projetos/Projetos/02 - Finco/credentials.ini"), section='postgresql'):
     #create parser
     parser=ConfigParser()
+
     #read config
     parser.read(filename)
 
@@ -18,6 +20,3 @@ def config(filename='credentials.ini', section='postgresql'):
         raise Exception('Section {0} not found in the {1} file'.format(section,filename))
 
     return db
-
-if __name__=='__main__':
-    config()
