@@ -12,7 +12,7 @@ def flow():
 
     #Income by time
     df=pd.read_sql("""
-        SELECT DATE,SUM(VALUE) AS VALUE FROM TABFLOW WHERE TYPE IN ('Salario','Bonus') GROUP BY DATE;
+        SELECT DATE,SUM(VALUE) AS INCOME FROM TABFLOW WHERE TYPE IN ('Salario','Bonus') GROUP BY DATE;
         """,conn)
     print(tabulate(df,headers='keys',tablefmt='psql'),'\n\n')
 
