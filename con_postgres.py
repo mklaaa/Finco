@@ -3,10 +3,12 @@ import getpass
 from config import config
 
 def connection(status):
+
     """ Connect to PostgreSQL database server """
+
     conn = None
 
-    #to open the connection
+    #Open connection
     if status == 'open':
         try:
             #read connection parameters
@@ -17,14 +19,12 @@ def connection(status):
             password=getpass.getpass('Password: ')
             conn = sql.connect(**params,password=password)
 
-            #create a cursor
-            cur = conn.cursor()
-            return cur
+            return conn
 
         except (Exception, sql.DatabaseError) as error:
             print(error)
 
-    # to close the connection
+    #Close connection
     elif status == 'close':
         if conn is not None:
             cur.close()
