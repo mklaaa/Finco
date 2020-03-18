@@ -2,7 +2,7 @@ from configparser import ConfigParser
 from pathlib import Path
 
 # find a better way to look for credentials
-def config(filename=Path("C:/Users/Vicente Bispo/Documents/Projetos/Projetos/02 - Finco/credentials.ini"), section='postgresql'):
+def config(filename=Path("C:/Projects/Develop/02 - Finco/credentials.ini"), section='postgresql'):
     #create parser
     parser=ConfigParser()
 
