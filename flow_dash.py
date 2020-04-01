@@ -1,5 +1,5 @@
 import pandas as pd
-#from tabulate import tabulate
+from tabulate import tabulate
 from flow import flow
 import dash
 import dash_core_components as dcc
@@ -12,10 +12,11 @@ def flow_dash():
     df={}
     df=flow()
 
-#    print(df['income'])
-#    for i in df:
-#        print('\n',tabulate(df[i],headers='keys',tablefmt='psql'))
+    print(df['income'])
+    #for i in df:
+    #    print('\n',tabulate(df[i],headers='keys',tablefmt='psql'))
 
+"""
     external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
     app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
@@ -34,6 +35,6 @@ def flow_dash():
     ])
 
     app.run_server(debug=True)
-
+"""
 if __name__=='__main__':
     flow_dash()
